@@ -1,0 +1,282 @@
+[
+  {
+    "instrument": "kick",
+    "preset_name": "kick_4_on_floor",
+    "pattern": [
+      "x---x---x---x---",
+      "x---x---x---x---",
+      "x---x---x---x---",
+      "x---x---x---x---",
+      "x---x---x---x---",
+      "x---x---x---x---",
+      "x---x---x---x---",
+      "x---x---x---x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_half_time",
+    "pattern": [
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_on_1_3",
+    "pattern": [
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------",
+      "x-------x-------"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_syncopated_1",
+    "pattern": [
+      "x---x---x-x-----",
+      "x---x---x---x---",
+      "x---x---x-x-----",
+      "x---x---x---x---",
+      "x---x---x-x-----",
+      "x---x---x---x---",
+      "x---x---x-x-----",
+      "x---x---x---x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_funky_offbeat",
+    "pattern": [
+      "x--x---x----x---",
+      "x--x---x----x---",
+      "x--x---x----x---",
+      "x--x---x----x---",
+      "x--x---x----x---",
+      "x--x---x----x---",
+      "x--x---x----x---",
+      "x--x---x----x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_triplet_feel",
+    "pattern": [
+      "x-x-x---x-x-x---",
+      "x-x-x---x-x-x---",
+      "x-x-x---x-x-x---",
+      "x-x-x---x-x-x---",
+      "x-x-x---x-x-x---",
+      "x-x-x---x-x-x---",
+      "x-x-x---x-x-x---",
+      "x-x-x---x-x-x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_sparse_lofi",
+    "pattern": [
+      "x---------------",
+      "----x-----------",
+      "--------x-------",
+      "--------------x-",
+      "x---------------",
+      "----x-----------",
+      "--------x-------",
+      "--------------x-"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_double_time",
+    "pattern": [
+      "x-x-x-x-x-x-x-x-",
+      "x-x-x-x-x-x-x-x-",
+      "x-x-x-x-x-x-x-x-",
+      "x-x-x-x-x-x-x-x-",
+      "x-x-x-x-x-x-x-x-",
+      "x-x-x-x-x-x-x-x-",
+      "x-x-x-x-x-x-x-x-",
+      "x-x-x-x-x-x-x-x-"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_skip_groove",
+    "pattern": [
+      "x--x--x--x------",
+      "x--x--x--x------",
+      "x--x--x--x------",
+      "x--x--x--x------",
+      "x--x--x--x------",
+      "x--x--x--x------",
+      "x--x--x--x------",
+      "x--x--x--x------"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_dnb_drive",
+    "pattern": [
+      "x-x---x-x---x-x-",
+      "x-x---x-x---x-x-",
+      "x-x---x-x---x-x-",
+      "x-x---x-x---x-x-",
+      "x-x---x-x---x-x-",
+      "x-x---x-x---x-x-",
+      "x-x---x-x---x-x-",
+      "x-x---x-x---x-x-"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_latino_groove",
+    "pattern": [
+      "x--x-x---x--x---",
+      "x--x-x---x--x---",
+      "x--x-x---x--x---",
+      "x--x-x---x--x---",
+      "x--x-x---x--x---",
+      "x--x-x---x--x---",
+      "x--x-x---x--x---",
+      "x--x-x---x--x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_reggaeton",
+    "pattern": [
+      "x--x--x--x--x---",
+      "x--x--x--x--x---",
+      "x--x--x--x--x---",
+      "x--x--x--x--x---",
+      "x--x--x--x--x---",
+      "x--x--x--x--x---",
+      "x--x--x--x--x---",
+      "x--x--x--x--x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_house_variation",
+    "pattern": [
+      "x---x-x-x---x-x-",
+      "x---x-x-x---x-x-",
+      "x---x-x-x---x-x-",
+      "x---x-x-x---x-x-",
+      "x---x-x-x---x-x-",
+      "x---x-x-x---x-x-",
+      "x---x-x-x---x-x-",
+      "x---x-x-x---x-x-"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_stutter_hits",
+    "pattern": [
+      "x-x---x-x---x---",
+      "x-x---x-x---x---",
+      "x-x---x-x---x---",
+      "x-x---x-x---x---",
+      "x-x---x-x---x---",
+      "x-x---x-x---x---",
+      "x-x---x-x---x---",
+      "x-x---x-x---x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_offbeat_emphasis",
+    "pattern": [
+      "-x--x--x--x--x--",
+      "-x--x--x--x--x--",
+      "-x--x--x--x--x--",
+      "-x--x--x--x--x--",
+      "-x--x--x--x--x--",
+      "-x--x--x--x--x--",
+      "-x--x--x--x--x--",
+      "-x--x--x--x--x--"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_triplet_skip",
+    "pattern": [
+      "x--x-x---x---x--",
+      "x--x-x---x---x--",
+      "x--x-x---x---x--",
+      "x--x-x---x---x--",
+      "x--x-x---x---x--",
+      "x--x-x---x---x--",
+      "x--x-x---x---x--",
+      "x--x-x---x---x--"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_dense_fill",
+    "pattern": [
+      "x-x-x-x-x---x-x-",
+      "x-x-x-x-x---x-x-",
+      "x-x-x-x-x---x-x-",
+      "x-x-x-x-x---x-x-",
+      "x-x-x-x-x---x-x-",
+      "x-x-x-x-x---x-x-",
+      "x-x-x-x-x---x-x-",
+      "x-x-x-x-x---x-x-"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_lofi_skip",
+    "pattern": [
+      "x-------x-x-----",
+      "---x-------x----",
+      "x-------x-x-----",
+      "---x-------x----",
+      "x-------x-x-----",
+      "---x-------x----",
+      "x-------x-x-----",
+      "---x-------x----"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_funk_variation",
+    "pattern": [
+      "x---x-x---x-x---",
+      "x---x-x---x-x---",
+      "x---x-x---x-x---",
+      "x---x-x---x-x---",
+      "x---x-x---x-x---",
+      "x---x-x---x-x---",
+      "x---x-x---x-x---",
+      "x---x-x---x-x---"
+    ]
+  },
+  {
+    "instrument": "kick",
+    "preset_name": "kick_sparse_triplet",
+    "pattern": [
+      "x--x-----x--x---",
+      "x--x-----x--x---",
+      "x--x-----x--x---",
+      "x--x-----x--x---",
+      "x--x-----x--x---",
+      "x--x-----x--x---",
+      "x--x-----x--x---",
+      "x--x-----x--x---"
+    ]
+  }
+]
