@@ -1,47 +1,63 @@
 "use client";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Cinzel_Decorative } from "next/font/google";
 
-const cinzel = Cinzel_Decorative({ subsets: ["latin"], weight: ["700"] });
+const cinzelDecorative = Cinzel_Decorative({
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+});
+
+function NavLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="relative group text-sm uppercase tracking-wider"
+    >
+      <span>{children}</span>
+      <span className="pointer-events-none absolute left-0 -bottom-1 h-0.5 w-0 bg-white/80 transition-all duration-300 group-hover:w-full" />
+    </Link>
+  );
+}
 
 export default function NavBar() {
   const [solid, setSolid] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className={`fixed top-0 z-50 w-full ${solid ? "nav-glass solid" : "nav-glass"}`}>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className={`${cinzel.className} text-xl tracking-wide text-white/90 hover:text-white`}>
-          Bit Pulse
-        </Link>
-
-        <nav className="flex items-center gap-6">
+    <div className="fixed inset-x-0 top-0 z-50">
+      <div className={`nav-glass ${solid ? "solid" : ""}`}>
+        <nav className="mx-auto flex max-w-6xl items-center gap-6 px-4 py-3 text-white">
           <Link
             href="/"
-            className="relative text-white/85 hover:text-white transition after:absolute after:-bottom-1 after:left-0
-                       after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-indigo-400 after:to-cyan-300
-                       hover:after:w-full after:transition-all after:duration-300"
+            className={`${cinzelDecorative.className} text-xl tracking-wide transition-opacity hover:opacity-90`}
+            aria-label="Bit Pulse home"
           >
-            Home
+            Bit Pulse
           </Link>
-          <Link
-            href="/lore"
-            className="relative text-white/85 hover:text-white transition after:absolute after:-bottom-1 after:left-0
-                       after:h-[2px] after:w-0 after:bg-gradient-to-r after:from-pink-400 after:to-violet-300
-                       hover:after:w-full after:transition-all after:duration-300"
-          >
-            LORE
-          </Link>
+
+          <div className="ml-auto flex items-center gap-5">
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/lore">Lore</NavLink>
+            <NavLink href="/music">Music</NavLink>
+            {/* REAP removed for now */}
+          </div>
         </nav>
       </div>
       <div className="nav-hairline" />
-    </header>
+    </div>
   );
 }
