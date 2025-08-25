@@ -31,3 +31,63 @@ body {
     object-position: center;  /* center it; tweak if you want more castle/sky */
   }
 }
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(0,200,255,0.3))
+            drop-shadow(0 0 20px rgba(0,200,255,0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(0,200,255,0.7))
+            drop-shadow(0 0 30px rgba(0,200,255,0.8));
+  }
+}
+.glow-pulse {
+  animation: glowPulse 3s infinite ease-in-out;
+}
+/* Keep story backgrounds full-bleed normally, show full image on ultrawide */
+@media (min-aspect-ratio: 21/9) {
+  .story-bg {
+    background-size: contain;
+    background-position: center 55%; /* tweak 50–60% to taste */
+    background-repeat: no-repeat;    /* <-- stop the tiling */
+  }
+}
+/* ——— Magical button (gradient ring + soft shimmer, no opacity fade) ——— */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.btn-magic {
+  position: relative;
+  isolation: isolate;
+}
+.btn-magic::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #8b5cf6, #22d3ee, #ec4899, #8b5cf6);
+  background-size: 300% 300%;
+  animation: shimmer 8s ease infinite;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.25));
+  z-index: -1;
+}
+.btn-magic:hover::before { filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.35)); }
+
+/* ——— Glassy navbar baseline ——— */
+.nav-glass {
+  backdrop-filter: saturate(140%) blur(10px);
+  background: rgba(8, 12, 24, 0.45);
+}
+.nav-glass.solid {
+  background: rgba(8, 12, 24, 0.65);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.25);
+}
+
+/* gradient hairline under the navbar */
+.nav-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+}
+
