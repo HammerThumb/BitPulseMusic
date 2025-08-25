@@ -24,13 +24,13 @@ export default function RailsToRemosPage() {
           <p>The train swayed as it wound through the canyons, iron wheels keeping time like a metronome. Kiro rested his guitar across his knees, picking a lazy rhythm while Daro drummed fingertips against the window ledge.</p>
           <p>Across from them, Aria flicked her wrist, and a piano of soft white light shimmered into being before her. She pressed a chord, testing its weight as the glow settled into something solid.</p>
           <p>“Did you ever fix that pedal?” Kiro asked without looking up.</p>
-          <p>Aria groaned. “Don’t start.”</p>
+          <p>Aria grinned and rolled her eyes. “Its not broken...”</p>
           <p>“I only ask because I’d hate to see Maestra Luthren throw another shaker at your head during rehearsal.”</p>
           <p>Aria snorted. “Pfft, she was aiming at Daro.”</p>
-          <p>Daro’s eyes went wide. “Hey!” He broke into laughter anyway, tapping a quick roll against the window.</p>
-          <p>Aria smiled in spite of herself and pressed down the pedal. It gave its familiar, mouse-like squeak. She held it a beat too long, daring them to complain.</p>
+          <p>Daro’s eyes went wide. “Hey, I was just trying to spice up the song!” He broke into laughter anyway, tapping a quick roll against the window.</p>
+          <p>Aria smiled in spite of herself and pressed down the pedal. It gave a familiar, mouse-like squeak. She held it a beat too long, daring them to complain.</p>
           <p>“I didn’t realize lumen-pianos even needed maintenance,” Daro said, smirking.</p>
-          <p>“Seriously, oil it before we get there,” Kiro added.</p>
+          <p>“Seriously, oil it before we get there...or.. whatever you do to fix lumens. We just need everything to be perfect.” Kiro added.</p>
           <p>Aria just grinned and hit another chord, letting the squeak blend into the rhythm of the rails.</p>
 
           <hr className="border-white/20 my-4" />
@@ -39,12 +39,12 @@ export default function RailsToRemosPage() {
           <p>Aria raised a brow. “The final rehearsal in Remos? She’ll eat us alive.”</p>
           <p>“Good,” Kiro said. “If we can survive her, we can survive anything. Even the First Song.”</p>
           <p>That quieted them. For a moment only the rails spoke, the rhythm steady and unchanging.</p>
-          <p>Daro broke it with a half-smile. “Strange, isn’t it? Last cycle was fifty years ago. My grandfather played percussion for the opening verse. Said it was like the world itself leaned in to listen.”</p>
+          <p>Daro broke it with a half-smile. “Strange, isn’t it? Last cycle was only fifty years ago. My grandfather played percussion for the opening verse. Said it was like the world itself leaned in to listen.”</p>
           <p>Kiro strummed a single note and let it ring. “And here we are, three kids with too much to prove.”</p>
           <p>“Not kids,” Aria corrected softly, eyes on the passing cliffs. “By the time we leave Remos, we’ll be the musicians of this age.”</p>
-          <p>“Yeah—<em>if</em> we get through auditions,” Daro shot back.</p>
+          <p>“Yeah—<em>if</em> we get through auditions,” Kiro shot back.</p>
           <p>Aria smirked. “Exactly. We’re only going up against the best Cantors from all over Sonaris. What if we don’t make the cut?”</p>
-          <p>“Not a chance,” Daro said quickly. “I’ve never played beside a sharper ear than Kiro, and your hands—squeaky pedal or not—make that piano sing.”</p>
+          <p>“Not a chance,” Daro said quickly. “I’ve never played beside a sharper ear than Kiro, and your hands make that piano sing - even with a squeaky pedal.” He shot Aria a quick wink. </p>
           <p>Kiro gave a lopsided grin. “Same goes for you, Daro. Nobody makes a train car sound like a drum kit quite like you.”</p>
           <p>The three of them laughed, the weight of their task lifting for just a breath. The train kept time, the pedal squeaked, and together it almost felt like music.</p>
 

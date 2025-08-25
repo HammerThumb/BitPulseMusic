@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Show the full 16:9 artwork on ultrawide screens (>= 21:9) */
+@media (min-aspect-ratio: 21/9) {
+  .hero-img {
+    object-fit: contain;      /* reveal full image (no vertical crop) */
+    object-position: center;  /* center it; tweak if you want more castle/sky */
+  }
+}
