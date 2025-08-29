@@ -133,7 +133,7 @@ export default function LoreIndex() {
               <div className="absolute inset-0 p-4 flex flex-col justify-end">
                 <h3 className="text-2xl font-semibold">Debassy</h3>
                 <p className="mt-1 text-white/80 text-sm">
-                  The Water Temple of Mirae—Ecko, Lysa, and Trebble claim the first page.
+                  The Staff Temple of Mirae.
                 </p>
               </div>
             </div>
