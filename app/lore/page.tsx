@@ -144,15 +144,33 @@ export default function LoreIndex() {
       {/* --- Glossary Section --- */}
       <section className="relative z-10 mx-auto max-w-4xl px-4 py-12 mt-12 border-t border-white/15">
         <h2
-          className="text-center text-2xl md:text-3xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-pink-300 to-indigo-200 mb-6"
+          className="text-center text-2xl md:text-3xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-cyan-300 to-pink-300 glow-pulse mb-6"
         >
           Glossary
         </h2>
         <p className="text-center text-white/80 mb-8">
           Explore the world of Sonaris. Tap an entry to see its image or description.
         </p>
-        <div className="flex items-center justify-center py-12">
-          <span className="text-lg text-white/70 italic">Coming soon</span>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {/* Trebble glossary entry only */}
+          <Link
+            href="/glossary/trebble"
+            className="flex flex-col items-center p-4 rounded-lg bg-black/30 border border-white/10 hover:bg-black/50 transition group"
+          >
+            <div className="w-32 h-32 mb-4 flex items-center justify-center">
+              <img
+                src="/images/glossary/Trebble.png"
+                alt="Trebble"
+                className="w-full h-full object-cover rounded shadow group-hover:scale-105 transition-transform"
+              />
+            </div>
+            <div className="w-full mt-auto text-center">
+              <h3 className="font-semibold text-lg mb-1">Trebble</h3>
+              <p className="text-white/70 text-sm">
+                An axolotl-like creature born of music and light.
+              </p>
+            </div>
+          </Link>
         </div>
       </section>
     </main>
