@@ -1,5 +1,6 @@
 // app/lore/page.tsx
 import Link from "next/link";
+import Image from "next/image";
 import { Cinzel_Decorative } from "next/font/google";
 
 const cinzelDecorative = Cinzel_Decorative({
@@ -132,9 +133,7 @@ export default function LoreIndex() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
               <div className="absolute inset-0 p-4 flex flex-col justify-end">
                 <h3 className="text-2xl font-semibold">Debassy</h3>
-                <p className="mt-1 text-white/80 text-sm">
-                  The Staff Temple of Mirae.
-                </p>
+                <p className="mt-1 text-white/80 text-sm">The Staff Temple of Mirae.</p>
               </div>
             </div>
           </Link>
@@ -158,10 +157,13 @@ export default function LoreIndex() {
             className="flex flex-col items-center p-4 rounded-lg bg-black/30 border border-white/10 hover:bg-black/50 transition group"
           >
             <div className="w-32 h-32 mb-4 flex items-center justify-center">
-              <img
+              <Image
                 src="/images/glossary/Trebble.png"
                 alt="Trebble"
+                width={512}
+                height={512}
                 className="w-full h-full object-cover rounded shadow group-hover:scale-105 transition-transform"
+                priority
               />
             </div>
             <div className="w-full mt-auto text-center">
