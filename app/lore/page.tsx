@@ -143,7 +143,7 @@ export default function LoreIndex() {
       {/* --- Glossary Section --- */}
       <section className="relative z-10 mx-auto max-w-4xl px-4 py-12 mt-12 border-t border-white/15">
         <h2
-          className="text-center text-2xl md:text-3xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-cyan-300 to-pink-300 glow-pulse mb-6"
+          className={`text-center text-2xl md:text-3xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-cyan-300 to-pink-300 glow-pulse mb-6 ${cinzelDecorative.className}`}
         >
           Glossary
         </h2>
@@ -151,12 +151,12 @@ export default function LoreIndex() {
           Explore the world of Sonaris. Tap an entry to see its image or description.
         </p>
         <div className="grid gap-6 sm:grid-cols-2">
-          {/* Trebble glossary entry only */}
+          {/* Trebble glossary entry */}
           <Link
             href="/glossary/trebble"
-            className="flex flex-col items-center p-4 rounded-lg bg-black/30 border border-white/10 hover:bg-black/50 transition group"
+            className="flex flex-col items-center p-4 rounded-lg bg-black/30 border border-white/10 transition group relative hover:border-pink-300 hover:shadow-[0_0_32px_8px_rgba(255,182,193,0.25)]"
           >
-            <div className="w-32 h-32 mb-4 flex items-center justify-center">
+            <div className="w-32 h-32 mb-4 flex items-center justify-center relative overflow-hidden">
               <Image
                 src="/images/glossary/Trebble.png"
                 alt="Trebble"
@@ -165,11 +165,55 @@ export default function LoreIndex() {
                 className="w-full h-full object-cover rounded shadow group-hover:scale-105 transition-transform"
                 priority
               />
+              {/* Magical twinkle effect on hover */}
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg className="absolute left-4 top-4 animate-pulse" width="32" height="32" viewBox="0 0 32 32">
+                  <g>
+                    <circle cx="16" cy="16" r="2" fill="#aefcff" />
+                    <circle cx="8" cy="24" r="1.5" fill="#fbc2ff" />
+                    <circle cx="24" cy="10" r="1.2" fill="#fffbe6" />
+                    <circle cx="20" cy="26" r="1" fill="#baffc9" />
+                    <circle cx="28" cy="18" r="0.8" fill="#e0e7ff" />
+                  </g>
+                </svg>
+                <svg className="absolute right-6 bottom-6 animate-pulse" width="24" height="24" viewBox="0 0 24 24">
+                  <g>
+                    <circle cx="12" cy="12" r="1.5" fill="#aefcff" />
+                    <circle cx="6" cy="18" r="1" fill="#fbc2ff" />
+                    <circle cx="18" cy="8" r="0.8" fill="#fffbe6" />
+                  </g>
+                </svg>
+              </div>
             </div>
             <div className="w-full mt-auto text-center">
               <h3 className="font-semibold text-lg mb-1">Trebble</h3>
               <p className="text-white/70 text-sm">
                 An axolotl-like creature born of music and light.
+              </p>
+            </div>
+          </Link>
+
+          {/* Null glossary entry */}
+          <Link
+            href="/glossary/null"
+            className="flex flex-col items-center p-4 rounded-lg bg-black/30 border border-black/60 transition group relative hover:shadow-[0_0_40px_16px_rgba(10,10,14,0.85)] hover:border-black/90 hover:bg-black/70"
+          >
+            <div className="w-32 h-32 mb-4 flex items-center justify-center relative overflow-hidden">
+              <Image
+                src="/images/glossary/Null.png"
+                alt="Null"
+                width={512}
+                height={640}
+                className="w-full h-full object-cover rounded shadow group-hover:scale-105 transition-transform"
+                priority
+              />
+              {/* Subtle dark border effect on hover, but not over the image */}
+              <div className="pointer-events-none absolute -inset-2 rounded-lg border-4 border-black opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
+            </div>
+            <div className="w-full mt-auto text-center">
+              <h3 className="font-semibold text-lg mb-1">Null</h3>
+              <p className="text-white/70 text-sm">
+                A shadowy entity that devours sound and light, leaving silence and void in its wake.
               </p>
             </div>
           </Link>

@@ -85,7 +85,7 @@ export default function DebassyPage() {
 
   <p>“Beautifully done,” Ecko said—the approval easy. “Elegant.”</p>
 
-  <p>“Occupational hazard,” Lysa replied with a small shrug.</p>
+  <p>“Cantadictorian of Reshar Academy, at your service,” Lysa replied with a wink.</p>
 
   <p>“It’s good to hear you play again,” Ecko added—memories of academy halls flickering and gone. Lysa’s mouth tilted at that—half a smile, half a memory.</p>
 
@@ -96,7 +96,7 @@ export default function DebassyPage() {
   <p>—</p>
 
   <p>
-    Inside, Debassy breathed in quiet light. A broad foyer opened beneath a ribbed glass dome; the lake above broke into slow, wandering bands that slid across the floor like living murals. Pillars of sea‑worn stone stood in a ring, their faces carved with wave‑marks and faint note glyphs, and thin brass inlays traced paths toward the far arch. Beads of condensation cupped along the ledges; shards of shell and glass were set like stars in the grout. They crossed the cool, echoing floor and slipped through the arch into the inner corridor.
+    Inside, Debassy was bathed in quiet light. A broad foyer opened beneath a ribbed glass dome; the lake above broke into slow, wandering bands that slid across the floor like living murals. Pillars of sea‑worn stone stood in a ring, their faces carved with wave‑marks and faint note glyphs, and thin brass inlays traced paths toward the far arch. Beads of condensation cupped along the ledges; shards of shell and glass were set like stars in the grout. They crossed the cool, echoing floor and slipped through the arch into the inner corridor.
   </p>
 
   <p>

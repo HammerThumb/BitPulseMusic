@@ -127,4 +127,104 @@ body {
     url('/images/squeaky-pedal.jpg') type('image/jpeg') 1x
   );
 }
+/* globals.css */
+/* === Bit Pulse Glossary: Null shadowy card ========================= */
+.null-card {
+  position: relative;
+  isolation: isolate;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(10,10,14,.7);
+  outline: 1px solid rgba(30,40,60, .28);
+  box-shadow: 0 0 32px 8px rgba(20, 30, 40, 0.7), 0 2px 16px 0 rgba(0,0,0,0.8);
+}
+
+.null-card::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 36px 12px rgba(20,30,40,0.55), 0 0 80px 0 rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity .25s ease;
+  mix-blend-mode: multiply;
+}
+
+.null-card:hover::after {
+  opacity: 1;
+  box-shadow: 0 0 56px 18px rgba(20,30,40,0.85), 0 0 120px 0 rgba(0,0,0,0.45);
+}
+
+/* === Bit Pulse Glossary: Trebble glow + twinkles ========================= */
+:root {
+  --bp-pink: 236,72,153;          /* #EC4899 */
+  --bp-lilac: 185,168,255;        /* subtle sparkle tint */
+}
+
+/* Card shell with soft pink glow */
+.bp-glow-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(10,10,14,.6);
+  outline: 1px solid rgba(var(--bp-pink), .18);
+}
+
+.bp-glow-card::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 26px 8px rgba(var(--bp-pink), .25);
+  animation: bpPulseGlow 2.8s ease-in-out infinite;
+}
+
+.bp-glow-card:hover::after {
+  box-shadow: 0 0 46px 14px rgba(var(--bp-pink), .45);
+}
+
+/* Star-like twinkles overlay */
+.bp-twinkles {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: screen;
+  opacity: .55;
+  background:
+    radial-gradient(6px 6px at 12% 28%, rgba(255,182,230,.55), transparent 60%),
+    radial-gradient(4px 4px at 72% 62%, rgba(255,182,230,.45), transparent 60%),
+    radial-gradient(3px 3px at 38% 78%, rgba(var(--bp-lilac), .35), transparent 60%),
+    radial-gradient(2px 2px at 85% 18%, rgba(255,182,230,.45), transparent 60%);
+  animation: bpTwinkle 3.2s ease-in-out infinite alternate;
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .bp-glow-card::after, .bp-twinkles { animation: none; }
+}
+
+/* Keyframes */
+@keyframes bpPulseGlow {
+  0%, 100% { box-shadow: 0 0 26px 8px rgba(var(--bp-pink), .25); }
+  50%      { box-shadow: 0 0 46px 14px rgba(var(--bp-pink), .45); }
+}
+
+@keyframes bpTwinkle {
+  0%, 100% { opacity: .35; transform: scale(.98); }
+  50%      { opacity: .9;  transform: scale(1); }
+}
+
+.hero-blur {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  opacity: 0.9;
+}
+
 
