@@ -82,8 +82,8 @@ export default function RailsToRemosPage() {
           <p>“Anyway,” Daro cut in, “think she’ll go easy on us this time?”</p>
           <p>Aria raised a brow. “The final rehearsal in Remos? She’ll eat us alive.”</p>
           <p>“Good,” Kiro said. “If we can survive her, we can survive anything. Even the First Song.”</p>
-          <p>Aria's fingers stilled above the keys. For a heartbeat, the train's rhythm felt like a countdown, steady and unchanging.</p>
-          
+          <p>Aria’s fingers stilled above the keys. For a heartbeat, the train's rhythm felt like a countdown, steady and unchanging.</p>
+
           <p>
             Daro broke the silence with a half-smile. “Strange, isn’t it? Last cycle was only fifty years
             ago. My grandfather played percussion for the opening verse. Said it was like the world
