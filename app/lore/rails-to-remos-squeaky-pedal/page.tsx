@@ -56,7 +56,7 @@ export default function RailsToRemosPage() {
             something solid.
           </p>
           <p>“Did you ever fix that pedal?” Kiro asked without looking up.</p>
-          <p>Aria grinned and rolled her eyes. “It's not broken...”</p>
+          <p>Aria grinned and rolled her eyes. “It’s not broken...”</p>
           <p>
             “I only ask because I’d hate to see Maestra Luthren throw another shaker at your head
             during rehearsal.”
