@@ -56,19 +56,20 @@ export default function Home() {
         </h1>
 
         {/* BODY: “invisible” glass for readability (uses .glass-vanish from globals.css) */}
-        <div className="glass-vanish mx-auto mt-6 max-w-3xl rounded-3xl p-6 md:p-10">
-          <h2 className="text-xl text-white drop-shadow-[0_4px_36px_rgba(0,0,0,1)] lg:whitespace-nowrap">
-            Songs from Sonaris. Stories that glow in the dark.
+        <div className="glass-vanish bp-edge-fade relative z-10 mx-auto mt-6 max-w-3xl rounded-3xl p-6 md:p-10">
+          <h2 className="text-[1.375rem] sm:text-[1.5rem] text-white/95 font-extrabold leading-snug">
+  Songs from Sonaris. Stories that glow in the dark.
           </h2>
 
-          <p className="mt-6 text-xl text-white/90 drop-shadow-[0_4px_36px_rgba(0,0,0,1)] lg:whitespace-nowrap">
+
+          <p className="mt-6 text-xl text-white/95 font-bold">
             <span className="font-bold text-cyan-300">Bit Pulse</span> is where music and story meet — a living archive of
             songs and tales from <span className="font-semibold text-purple-300">Sonaris</span>.
           </p>
 
-          <div className="mt-6 max-w-2xl mx-auto space-y-4 text-xl leading-relaxed text-white/90 drop-shadow-[0_4px_36px_rgba(0,0,0,1)]">
-            <p>Each track is a chapter, each release a landmark on the map.</p>
-            <p>This site is both library and compass, keeping the journey connected as the world grows.</p>
+          <div className="mt-6 max-w-2xl mx-auto space-y-4 text-xl leading-relaxed text-white/95 font-bold">
+            <p>Each track is a new chapter or short story told in non-linear fashion.</p>
+            <p>This site is a library, keeping the journey connected as the world grows.</p>
           </div>
 
           {/* CTA */}

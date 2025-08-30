@@ -216,16 +216,6 @@ body {
   50%      { opacity: .9;  transform: scale(1); }
 }
 
-.hero-blur {
-  position: absolute;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
-  z-index: 1;
-  pointer-events: none;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  opacity: 0.9;
-}
 /* ==== “Invisible” glass used under hero body text ======================== */
 /* Goal: readable text with zero obvious box edges */
 .glass-vanish {
@@ -244,22 +234,53 @@ body {
 @supports not (backdrop-filter: blur(2px)) {
   .glass-vanish { background: rgba(8, 12, 24, 0.18); }
 }
-/* Feather the edges of the glass wrapper so no box is visible */
+/* Feather the edges so the glass box disappears */
 .bp-edge-fade {
-  /* fade out only near the outer 25–30% so text isn't affected */
-  --bp-fade: radial-gradient(130% 150% at 50% 50%, #000 70%, rgba(0,0,0,0) 100%);
+  --bp-fade: radial-gradient(240% 260% at 50% 50%, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
   -webkit-mask-image: var(--bp-fade);
   mask-image: var(--bp-fade);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
+
 
 /* Optional: a touch more blur + lighter tint so it reads less like a layer */
 .glass-vanish {
-  background: rgba(8, 12, 24, 0.04);
-  backdrop-filter: blur(12px) saturate(112%);
-  -webkit-backdrop-filter: blur(12px) saturate(112%);
-  border: 0;
-  box-shadow: none;
+  background: rgba(8, 12, 24, 0.00);           /* lighter tint so the “box” disappears */
+  backdrop-filter: blur(22px) contrast(0.85) brightness(1.05) saturate(110%);  /* a touch more blur, gentle saturation */
+  -webkit-backdrop-filter: blur(22px) contrast(0.85) brightness(1.05) saturate(110%);
+
+  border: 0;           /* make sure no border shows */
+  box-shadow: none;    /* and no shadow outline */
 }
+/* Subtle dark text halo for busy backgrounds (use on headings/paragraphs only) */
+.bp-clarity {
+  text-shadow:
+    0 1px 1px rgba(0,0,0,.55),
+    0 0 18px rgba(0,0,0,.35);
+}
+@media (min-width: 768px) {
+  .bp-clarity {
+    text-shadow:
+      0 1px 2px rgba(0,0,0,.6),
+      0 0 26px rgba(0,0,0,.35);
+  }
+}
+/* Tiny inner highlight to make letters pop on busy backgrounds */
+.bp-ink {
+  /* subtle white micro-stroke (Chrome/Safari); Firefox safely ignores */
+  -webkit-text-stroke: 0.35px rgba(255,255,255,0.28);
+
+  /* faint inner glow + tiny lift; stacks with .bp-clarity */
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.18),
+    0 1px 2px rgba(0,0,0,0.45);
+}
+
+@media (min-width: 1024px) {
+  .bp-ink { -webkit-text-stroke: 0.4px rgba(255,255,255,0.28); }
+}
+
 
 
 
