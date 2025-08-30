@@ -21,7 +21,7 @@ export default function Home() {
         aria-hidden="true"
       />
 
-      {/* Responsive hero image */}
+      {/* Responsive hero image (unchanged) */}
       <picture>
         <source media="(max-width: 768px)" srcSet="/images/Hero_mobile.png" />
         <source media="(max-width: 1600px)" srcSet="/images/hero-desktop-1920x1080.png" />
@@ -37,7 +37,7 @@ export default function Home() {
         />
       </picture>
 
-      {/* Soft vignette */}
+      {/* Soft vignette (unchanged) */}
       <div
         className="fixed inset-0 pointer-events-none bg-gradient-to-b from-black/25 via-transparent to-black/40"
         aria-hidden="true"
@@ -45,21 +45,19 @@ export default function Home() {
 
       {/* Foreground content */}
       <section className="relative z-10 mx-auto max-w-5xl px-6 pt-28 pb-24 text-center">
-        {/* Blur effect behind text for legibility */}
-        <div className="absolute inset-0 mx-auto max-w-3xl h-full hero-blur" aria-hidden="true" />
-        
-        <div className="relative">
-          <h1
-            className={`${cinzelDecorative.className}
-              text-6xl md:text-8xl lg:text-9xl font-bold tracking-wide
-              text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-cyan-300 to-pink-300
-              glow-pulse`}
-          >
-            Bit Pulse
-          </h1>
+        {/* TITLE: stands alone, no blur behind it */}
+        <h1
+          className={`${cinzelDecorative.className}
+            text-6xl md:text-8xl lg:text-9xl font-bold tracking-wide
+            text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-cyan-300 to-pink-300
+            glow-pulse`}
+        >
+          Bit Pulse
+        </h1>
 
-          {/* Tagline — stays single line on lg+ */}
-          <h2 className="mt-4 text-xl text-white drop-shadow-[0_4px_36px_rgba(0,0,0,1)] lg:whitespace-nowrap">
+        {/* BODY: “invisible” glass for readability (uses .glass-vanish from globals.css) */}
+        <div className="glass-vanish mx-auto mt-6 max-w-3xl rounded-3xl p-6 md:p-10">
+          <h2 className="text-xl text-white drop-shadow-[0_4px_36px_rgba(0,0,0,1)] lg:whitespace-nowrap">
             Songs from Sonaris. Stories that glow in the dark.
           </h2>
 

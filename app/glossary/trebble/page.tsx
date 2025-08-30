@@ -25,7 +25,7 @@ export default function TrebbleGlossaryPage() {
         <div className="max-w-2xl w-full flex flex-col items-center">
           <div className="relative w-[28rem] h-[36rem] mb-6">
             <Image
-              src="/images/glossary/trebble.png"
+              src="/images/glossary/Trebble.png"
               alt="Trebble, a bioluminescent pink axolotl with lilac frills, glowing softly."
               fill
               sizes="(max-width: 768px) 100vw, 448px"
