@@ -251,7 +251,7 @@ export default function LoreIndex() {
   <div className="w-full mt-auto text-center">
     <h3 className="font-semibold text-lg mb-1">Sonarail</h3>
     <p className="text-white/70 text-sm">
-      A three-deck, multi-car convoy that spans all of Sonaris.
+      A three-deck, multi-car convoy that runs the length of Sonaris.
     </p>
   </div>
 </Link>
