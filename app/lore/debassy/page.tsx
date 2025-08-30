@@ -171,10 +171,12 @@ export default function DebassyPage() {
 
   <p>Then she stilled, older and new, the bell jar now hollow.</p>
 
+  <p>Lysa’s hand hovered just behind Trebble, like she wasn’t sure whether to protect her—or ask for the page back.</p>
+
   <p>“She can carry it,” Lysa whispered—half relief, half disbelief.</p>
 
   <p>
-    Ecko started—“The page...” —and the floor quivered; pressure knotted the corridor as the glass pipes choked. He cut the word off, lifting the flute.
+    Ecko started—“But the page...” —and the floor quivered; pressure knotted the corridor as the glass pipes choked. He cut the word off, lifting the flute.
   </p>
 
   <p>“Something’s wrong,” Lysa said shakily, eyes on the door.</p>
