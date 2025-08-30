@@ -16,10 +16,7 @@ export default function Home() {
       />
 
       {/* Optional noise texture */}
-      <div
-        className="fixed inset-0 -z-10 opacity-15 pointer-events-none bg-[url('/images/noise.png')] bg-[length:300px_300px] mix-blend-overlay"
-        aria-hidden="true"
-      />
+      
 
       {/* Responsive hero image (unchanged) */}
       <picture>

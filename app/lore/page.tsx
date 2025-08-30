@@ -1,4 +1,7 @@
 // app/lore/page.tsx
+import TrebbleImg from "@/public/images/glossary/Trebble.png";
+import NullImg from "@/public/images/glossary/Null.png";
+import SonarailImg from "@/public/images/glossary/Sonarail.png";
 import Link from "next/link";
 import Image from "next/image";
 import { Cinzel_Decorative } from "next/font/google";
@@ -11,15 +14,12 @@ const cinzelDecorative = Cinzel_Decorative({
 export default function LoreIndex() {
   return (
     <main className="relative min-h-screen text-white">
-      {/* Background gradient + optional noise (matches Home) */}
+      {/* Background gradient (matches Home) */}
       <div
         className="fixed inset-0 -z-20 bg-gradient-to-b from-[#0b1022] via-[#141a2f] to-[#0b1022]"
         aria-hidden="true"
       />
-      <div
-        className="fixed inset-0 -z-10 opacity-15 pointer-events-none bg-[url('/images/noise.png')] bg-[length:300px_300px] mix-blend-overlay"
-        aria-hidden="true"
-      />
+
       {/* Soft vignette for readability */}
       <div
         className="fixed inset-0 pointer-events-none bg-gradient-to-b from-black/25 via-transparent to-black/40"
@@ -127,7 +127,7 @@ export default function LoreIndex() {
             <div className="relative aspect-[16/7] w-full">
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-                style={{ backgroundImage: "url(/images/debassy-hero-2400x1600.jpg)" }}
+                style={{ backgroundImage: "url(/images/debassy.jpg)" }}
                 aria-hidden="true"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
@@ -158,13 +158,12 @@ export default function LoreIndex() {
           >
             <div className="w-32 h-32 mb-4 flex items-center justify-center relative overflow-hidden">
               <Image
-                src="/images/glossary/Trebble.png"
-                alt="Trebble"
+                src={TrebbleImg}
+               alt="Trebble"
                 width={512}
                 height={512}
                 className="w-full h-full object-cover rounded shadow group-hover:scale-105 transition-transform"
-                priority
-              />
+               />
               {/* Magical twinkle effect on hover */}
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg className="absolute left-4 top-4 animate-pulse" width="32" height="32" viewBox="0 0 32 32">
@@ -200,13 +199,12 @@ export default function LoreIndex() {
           >
             <div className="w-32 h-32 mb-4 flex items-center justify-center relative overflow-hidden">
               <Image
-                src="/images/glossary/Null.png"
+                src={NullImg}
                 alt="Null"
                 width={512}
                 height={640}
                 className="w-full h-full object-cover rounded shadow group-hover:scale-105 transition-transform"
-                priority
-              />
+            />
               {/* Subtle dark border effect on hover, but not over the image */}
               <div className="pointer-events-none absolute -inset-2 rounded-lg border-4 border-black opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
             </div>
@@ -217,6 +215,47 @@ export default function LoreIndex() {
               </p>
             </div>
           </Link>
+
+          {/* Sonarail glossary entry */}
+<Link
+  href="/glossary/sonarail"
+  className="flex flex-col items-center p-4 rounded-lg bg-black/30 border border-white/10
+             transition group relative hover:border-cyan-300
+             hover:shadow-[0_0_32px_8px_rgba(103,232,249,0.25)]"
+>
+  <div className="w-32 h-32 mb-4 flex items-center justify-center relative overflow-hidden">
+    <Image
+      src={SonarailImg}
+      alt="Sonarail — a three-deck hover train gliding inches above glyph-lit rails."
+      width={512}
+      height={512}
+      className="w-full h-full object-cover rounded shadow group-hover:scale-105 transition-transform"
+      priority
+    />
+
+    {/* Blue/cyan glow + twinkles on hover (like Trebble, but blue) */}
+    <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      {/* soft radial glow */}
+      <div
+        className="absolute inset-0 rounded"
+        style={{
+          background:
+            "radial-gradient(70% 70% at 50% 50%, rgba(103,232,249,.22) 0%, rgba(103,232,249,.10) 40%, transparent 68%)",
+          mixBlendMode: "screen",
+        }}
+      />
+      
+    </div>
+  </div>
+
+  <div className="w-full mt-auto text-center">
+    <h3 className="font-semibold text-lg mb-1">Sonarail</h3>
+    <p className="text-white/70 text-sm">
+      A three-deck, multi-car convoy that spans all of Sonaris.
+    </p>
+  </div>
+</Link>
+
         </div>
       </section>
     </main>

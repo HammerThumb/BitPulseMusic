@@ -1,4 +1,5 @@
-// app/glossary/page.tsx
+// app/glossary/Trebble/page.tsx
+import TrebbleImg from "@/public/images/glossary/Trebble.png";
 import Link from "next/link";
 import Image from "next/image";
 import { Crimson_Pro } from "next/font/google";
@@ -14,7 +15,7 @@ export default function TrebbleGlossaryPage() {
       {/* Gradient background for continuity */}
       <div className="fixed inset-0 -z-20 bg-gradient-to-b from-[#0b1022] via-[#141a2f] to-[#0b1022]" aria-hidden="true" />
       <div className="fixed inset-0 pointer-events-none -z-10 bg-gradient-to-b from-black/25 via-transparent to-black/40" aria-hidden="true" />
-      <div className="fixed inset-0 -z-10 opacity-15 pointer-events-none bg-[url('/images/noise.png')] bg-[length:300px_300px] mix-blend-overlay" aria-hidden="true" />
+      
 
       <section className="relative z-10 mx-auto max-w-6xl px-4 py-14">
         <div className="mb-6">
@@ -25,7 +26,7 @@ export default function TrebbleGlossaryPage() {
         <div className="max-w-2xl w-full flex flex-col items-center">
           <div className="relative w-[28rem] h-[36rem] mb-6">
             <Image
-              src="/images/glossary/Trebble.png"
+              src={TrebbleImg}
               alt="Trebble, a bioluminescent pink axolotl with lilac frills, glowing softly."
               fill
               sizes="(max-width: 768px) 100vw, 448px"
