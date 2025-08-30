@@ -1,7 +1,7 @@
 // app/lore/page.tsx
-import TrebbleImg from "@/public/images/glossary/Trebble.png";
-import NullImg from "@/public/images/glossary/Null.png";
-import SonarailImg from "@/public/images/glossary/Sonarail.png";
+import TrebbleImg from "@/app/glossary/trebble/Trebble.png";
+import NullImg from "@/app/glossary/null/Null.png";
+import SonarailImg from "@/app/glossary/sonarail/Sonarail.png";
 import Link from "next/link";
 import Image from "next/image";
 import { Cinzel_Decorative } from "next/font/google";
