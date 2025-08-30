@@ -53,6 +53,22 @@ export default function NavBar() {
             <NavLink href="/">Home</NavLink>
             <NavLink href="/lore">Lore</NavLink>
             <NavLink href="/music">Music</NavLink>
+            <a
+  href="https://ko-fi.com/bit_pulse"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 rounded-xl px-3 py-2
+             border border-white/15 text-white/80 hover:text-white
+             hover:border-white/35 hover:bg-white/5 transition"
+  aria-label="Support on Ko-fi"
+>
+  {/* tiny cup icon */}
+  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="currentColor" d="M3 7h13v6a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V7Zm13 1h3a3 3 0 0 1 0 6h-2.1a6.97 6.97 0 0 0 .9-3V8Zm-9 9h4a4 4 0 0 0 4-4V9H4v4a4 4 0 0 0 4 4Z"/>
+  </svg>
+  <span className="hidden sm:inline">Support</span>
+</a>
+
             {/* REAP removed for now */}
           </div>
         </nav>
