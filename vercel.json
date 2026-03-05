@@ -2,9 +2,11 @@
   "routes": [
     { "src": "/__grim_test__", "dest": "https://example.com" },
 
-    { "src": "/game", "dest": "https://defense-of-sonaris.vercel.app" },
-    { "src": "/game/", "dest": "https://defense-of-sonaris.vercel.app" },
+    { "handle": "filesystem" },
 
-    { "src": "/game/(.*)", "dest": "https://defense-of-sonaris.vercel.app/$1" }
+    { "src": "/game/?$", "dest": "https://defense-of-sonaris.vercel.app" },
+    { "src": "/game/(.*)", "dest": "https://defense-of-sonaris.vercel.app/$1" },
+
+    { "handle": "miss" }
   ]
 }
