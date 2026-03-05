@@ -1,6 +1,5 @@
 {
   "routes": [
-    { "src": "/__grim_test__", "dest": "https://example.com" },
 
     { "handle": "filesystem" },
 
