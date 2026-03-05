@@ -1,1 +1,12 @@
-
+{
+  "rewrites": [
+    {
+      "source": "/game",
+      "destination": "https://defense-of-sonaris.vercel.app"
+    },
+    {
+      "source": "/game/(.*)",
+      "destination": "https://defense-of-sonaris.vercel.app/$1"
+    }
+  ]
+}
