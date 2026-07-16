@@ -4067,9 +4067,11 @@ function maybeWarnStorage() {
 }
 let _writeQueue = Promise.resolve();
 let _pending = null;                 // latest JSON awaiting write (coalesces rapid saves)
+let _boardImporting = false;         // full-board restore owns persistence through reload
 /* ── undo/redo history (full-board snapshots) ── */
 let history = [], histIndex = -1, restoring = false; const HIST_MAX = 80;
 function commitSave() {
+  if (_boardImporting) return _writeQueue;
   try { localStorage.setItem("stickyActiveTab", activeTabId); } catch {}
   _pending = serializeBoard();   // syncs active tab's notes; big blob -> IndexedDB (images stored separately)
   recordSnapshot();   // capture this state for undo/redo (deduped; skipped while restoring)
@@ -4097,8 +4099,27 @@ function commitSave() {
 const saveTabs = commitSave;
 // High-frequency edits call save() → debounced write.
 let _saveTimer = null;
-function save() { if (crossTabDrag) return; clearTimeout(_saveTimer); _saveTimer = setTimeout(commitSave, 400); }
-function flushSave() { clearTimeout(_saveTimer); commitSave(); }
+function save() { if (crossTabDrag || _boardImporting) return; clearTimeout(_saveTimer); _saveTimer = setTimeout(commitSave, 400); }
+function flushSave() { clearTimeout(_saveTimer); _saveTimer = null; return commitSave(); }
+async function persistFullBoardImport(data) {
+  _boardImporting = true;
+  clearTimeout(_saveTimer); _saveTimer = null;
+  _pending = null;                    // discard old board JSON whose writer has not started
+  await _writeQueue;                  // let an already-started old-board write finish first
+  try {
+    await IDB.set("stickyTabs", data);
+    try { localStorage.removeItem("stickyTabs"); } catch {}
+    return true;
+  } catch (err) {
+    try { localStorage.setItem("stickyTabs", data); return true; }
+    catch (fallbackErr) {
+      _boardImporting = false;
+      alert("Couldn't save the imported board (too large for fallback storage).");
+      console.error("Board import failed:", err, fallbackErr);
+      return false;
+    }
+  }
+}
 window.addEventListener("beforeunload", () => { if (crossTabDrag) cancelCrossTabDrag(crossTabDrag); flushSave(); });
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") { if (crossTabDrag) cancelCrossTabDrag(crossTabDrag); flushSave(); }
@@ -6294,7 +6315,7 @@ const FEATURES = [
   ]],
   ["Draggies", [
     [">", "Type at the start of a line for a new task bullet"],
-    ["Bullet + .", "A -, *, or • line ending in a period auto-becomes a draggy"],
+    ["Bullet + Enter", "A -, *, or • line becomes a draggy when you press Enter"],
     ["＋⠿", "Add a draggy (right-click it to fold-all / sort by priority)"],
     ["⠿", "Drag to move; click to recolor"],
     ["💬", "Attach a nested note · right-click for bold/grey + priority"],
@@ -6408,26 +6429,30 @@ document.getElementById("exportBtn").onclick = async () => {
   const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="sticky-notes-backup-"+new Date().toISOString().slice(0,10)+".json"; a.click(); URL.revokeObjectURL(a.href);
 };
 document.getElementById("importBtn").onclick = () => document.getElementById("importFile").click();
+async function restoreFullBoardBackup(d) {
+  // Free tier: refuse restoring a board that exceeds the 5-tab cap (don't silently trim someone's backup).
+  if(!isPremium() && d.tabs.length > FREE_TAB_LIMIT){ showUpgrade("tabs"); return; }
+  if(!confirm(`Restore ${d.tabs.length} tab(s)? Replaces everything.`))return;
+  if(!sanitizeImportedTabs(d.tabs)){alert("This file doesn't look like a valid Sticky Planner backup.");return;}
+  const importedProfile = "gameProfile" in d && isImportableGameProfile(d.gameProfile) ? normaliseGameProfile(d.gameProfile) : gameProfile;
+  normaliseExclusiveBackdropTabs(d.tabs,importedProfile);
+  const cleanTabs=JSON.stringify(d.tabs);   // scrubbed and exclusive-mode normalized above
+  if(!await persistFullBoardImport(cleanTabs))return;
+  try {
+    if(d.activeTabId)localStorage.setItem("stickyActiveTab",d.activeTabId);
+    if("syncRules"in d)localStorage.setItem("stickyNotesSync",d.syncRules?"1":"");
+    if(Number.isFinite(+d.globalRuleOpacity))localStorage.setItem(RULE_OPACITY_KEY,String(+d.globalRuleOpacity));else localStorage.removeItem(RULE_OPACITY_KEY);
+    if(Number.isFinite(+d.globalRuleSpacing))localStorage.setItem(RULE_SPACING_KEY,String(+d.globalRuleSpacing));else localStorage.removeItem(RULE_SPACING_KEY);
+    if("gameProfile" in d) restoreGameProfileFromBackup(d.gameProfile);   // old backups intentionally preserve current progress
+  } catch (err) { console.warn("Imported board settings could not be fully restored",err); }
+  location.reload();                    // import mode stays active through lifecycle handlers
+}
 document.getElementById("importFile").addEventListener("change", e => {
   const file=e.target.files[0]; e.target.value=""; if(!file) return;
   const r=new FileReader(); r.onload=async ()=>{
     let d; try{d=JSON.parse(r.result);}catch{alert("Invalid backup.");return;}
     if(d?.tabs?.length){
-      // Free tier: refuse restoring a board that exceeds the 5-tab cap (don't silently trim someone's backup).
-      if(!isPremium() && d.tabs.length > FREE_TAB_LIMIT){ showUpgrade("tabs"); return; }
-      if(!confirm(`Restore ${d.tabs.length} tab(s)? Replaces everything.`))return;
-      if(!sanitizeImportedTabs(d.tabs)){alert("This file doesn't look like a valid Sticky Planner backup.");return;}
-      const importedProfile = "gameProfile" in d && isImportableGameProfile(d.gameProfile) ? normaliseGameProfile(d.gameProfile) : gameProfile;
-      normaliseExclusiveBackdropTabs(d.tabs,importedProfile);
-      const cleanTabs=JSON.stringify(d.tabs);   // scrubbed and exclusive-mode normalized above
-      try{ await IDB.set("stickyTabs",cleanTabs); localStorage.removeItem("stickyTabs"); }
-      catch(e){ try{ localStorage.setItem("stickyTabs",cleanTabs); }catch(e2){ alert("Couldn't save the imported board (too large for fallback storage)."); return; } }
-      if(d.activeTabId)localStorage.setItem("stickyActiveTab",d.activeTabId);
-      if("syncRules"in d)localStorage.setItem("stickyNotesSync",d.syncRules?"1":"");
-      if(Number.isFinite(+d.globalRuleOpacity))localStorage.setItem(RULE_OPACITY_KEY,String(+d.globalRuleOpacity));else localStorage.removeItem(RULE_OPACITY_KEY);
-      if(Number.isFinite(+d.globalRuleSpacing))localStorage.setItem(RULE_SPACING_KEY,String(+d.globalRuleSpacing));else localStorage.removeItem(RULE_SPACING_KEY);
-      if("gameProfile" in d) restoreGameProfileFromBackup(d.gameProfile);   // old backups intentionally preserve current progress
-      location.reload();return;}
+      await restoreFullBoardBackup(d);return;}
     const imp=Array.isArray(d)?d:d.notes;
     if(!Array.isArray(imp)||(imp.length&&!imp.every(x=>x?.id))){alert("Not a valid backup.");return;}
     if(!confirm(`Restore ${imp.length} note(s) into current tab?`))return;
@@ -6996,7 +7021,7 @@ function render(n, options={}) {
   } else {
     body.contentEditable="true"; setHTML(body, n.html||""); hydrateImages(body); recalcSheetsIn(body);
   }
-  body.addEventListener("input",()=>{if(n.mdMode)return;const nb=suppressBlockConvert?null:maybeConvertBlock(body);if(nb)colorBlockForColumn(nb,n);maybeAutoSheet(body);n.html=bodyHTMLForSave(body);save();});
+  body.addEventListener("input",()=>{if(n.mdMode)return;maybeAutoSheet(body);n.html=bodyHTMLForSave(body);save();});
   body.addEventListener("keydown",e=>{ if(n.mdMode&&body.dataset.mdEditing){if(e.key==="Escape")body.blur();e.stopPropagation();return;} handleKeys(e,body,n);});
   body.addEventListener("pointermove",e=>shUpdateResizeHover(e,body));
   body.addEventListener("pointerleave",()=>{if(!activeSheetResize)shClearResizeHover();});
@@ -7435,7 +7460,37 @@ function addEmptyDraggy(n, el){
   syncBody(body);
 }
 function upgradeBlock(b){let ch=false;b.querySelectorAll(":scope > .block-style").forEach(el=>{el.remove();ch=true;});const legacyPrio=b.querySelector(":scope > .block-priority");if(legacyPrio&&legacyPrio.tagName!=="SPAN"){legacyPrio.remove();ch=true;}if(!b.querySelector(".block-bubble")){const bub=document.createElement("button");bub.className="block-bubble";bub.title="Open notes  ·  right-click for bold/grey + priority";bub.textContent="💬";b.insertBefore(bub,b.querySelector(".block-x"));ch=true;}if(!b.querySelector(".block-priority")){const pb=document.createElement("span");pb.className="block-priority";pb.title="Priority (set via the 💬 right-click menu)";b.insertBefore(pb,b.querySelector(".block-bubble"));ch=true;}if(!b.querySelector(".block-note")){const sub=document.createElement("div");sub.className="block-note";sub.setAttribute("contenteditable","true");b.appendChild(sub);ch=true;}if(b.querySelector(".block-note").textContent.trim())b.querySelector(".block-bubble").classList.add("has-content");renderBlockPriority(b);return ch;}
-function maybeConvertBlock(body){const sel=window.getSelection();if(!sel.rangeCount)return;let node=sel.getRangeAt(0).startContainer;if(node===body)return;let line=node;while(line.parentNode&&line.parentNode!==body)line=line.parentNode;if(line.parentNode!==body)return;if(line.nodeName==="TABLE"||(line.classList&&line.classList.contains("block")))return;const m=(line.textContent||"").match(/^\s*[-*•]\s*(.+\.)\s*$/);if(!m)return;const block=makeBlock(m[1]);const nl=document.createElement("div");nl.innerHTML="<br>";line.replaceWith(block);block.after(nl);placeCaret(nl);return block;}
+function draggyTitleFromLine(text){
+  const match=String(text||"").match(/^[-*•](.*)$/);
+  if(!match)return null;
+  const title=match[1].trim();
+  return title||null;
+}
+function maybeConvertBlockOnEnter(e,body,n){
+  if(e.key!=="Enter"||e.shiftKey||e.ctrlKey||e.altKey||e.metaKey)return false;
+  const sel=window.getSelection();
+  if(!sel.rangeCount)return false;
+  const range=sel.getRangeAt(0);
+  if(!range.collapsed)return false;
+  let line=topLine(body,range.startContainer);
+  if(!line&&range.startContainer===body&&range.startOffset>0)line=body.childNodes[range.startOffset-1];
+  if(!line||line.parentNode!==body||line.nodeName==="TABLE"||line.nodeName==="UL"||line.nodeName==="OL"||(line.classList&&line.classList.contains("block")))return false;
+  if(range.startContainer!==body){
+    const tail=document.createRange();
+    tail.selectNodeContents(line);
+    try{tail.setStart(range.startContainer,range.startOffset);}catch(_){return false;}
+    if(tail.toString()!=="")return false;
+  }
+  const title=draggyTitleFromLine(line.textContent);
+  if(!title)return false;
+  e.preventDefault();
+  const block=makeBlock(title);
+  const nl=document.createElement("div");nl.innerHTML="<br>";
+  line.replaceWith(block);block.after(nl);placeCaret(nl);
+  colorBlockForColumn(block,n);
+  n.html=bodyHTMLForSave(body);save();
+  return true;
+}
 
 /* ── Fold / unfold every draggy in a note (right-click the "+draggy" button).
    Folding collapses each draggy to a single line; the folded state lives in the
@@ -7527,7 +7582,6 @@ let fmtCtxBody = null;   // the enclosing .note-body (persisted container — us
 let fmtCtxHost = null;   // the actual editing host of the selection (.note-body, .block-text, or .block-note)
 let fmtCtxNote = null;   // owning note, used by the shared Add spreadsheet action
 let fmtCtxRange = null;  // saved caret/selection range used as the spreadsheet insertion point
-let suppressBlockConvert = false;   // while true, the note-body input handler won't turn a line into a draggy
 function openFmtCtx(x, y, body, note=null) {
   // A draggy's .block is contenteditable=false, so .block-text / .block-note are isolated editing hosts.
   // Commands must target whichever editable actually holds the selection, not always the outer .note-body.
@@ -7610,8 +7664,7 @@ function toggleHighlight() {
   const run = fn => () => {
     if (!fmtCtxHost) return;
     fmtCtxHost.focus();                          // focus the actual editing host (may be a draggy sub-note)
-    suppressBlockConvert = true;                 // don't let formatting trip the "- text." → draggy rule
-    try { fn(); } finally { suppressBlockConvert = false; }
+    fn();
     syncBody(fmtCtxBody);                        // persist the enclosing note-body cleanly
     updateFmtCtxState();                         // menu stays open; refresh states
   };
@@ -7636,8 +7689,7 @@ function toggleHighlight() {
   document.getElementById("fmtCut").addEventListener("click", () => {
     if (!fmtCtxHost) return;
     fmtCtxHost.focus();
-    suppressBlockConvert = true;                    // deleting the selection must not trip the draggy rule
-    try { document.execCommand("cut"); } finally { suppressBlockConvert = false; }
+    document.execCommand("cut");
     syncBody(fmtCtxBody);
     close();
   });
@@ -8092,6 +8144,7 @@ function handleKeys(e,body,n){
     if(e.key==="Tab"){e.preventDefault();sheetTab(cell,e.shiftKey);n.html=bodyHTMLForSave(body);save();return;}
     if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sheetEnter(cell);n.html=bodyHTMLForSave(body);save();return;}
   }
+  if(maybeConvertBlockOnEnter(e,body,n))return;
   if(e.key===">"){if(!caretAtLineStart(body))return;e.preventDefault();insertBullet(body);n.html=bodyHTMLForSave(body);save();return;}
   if(e.key==="Tab"){e.preventDefault();
     if(!cell){const sel=window.getSelection();if(!sel.rangeCount)return;const range=sel.getRangeAt(0);let line=range.startContainer;while(line.parentNode!==body&&line.parentNode)line=line.parentNode;const table=document.createElement("table");const tr=table.insertRow();const td1=tr.insertCell();const td2=tr.insertCell();td2.innerHTML="<br>";if(line===body||!line.textContent){td1.innerHTML="<br>";body.appendChild(table);}else{td1.innerHTML=line.nodeType===3?line.textContent:line.innerHTML;line.replaceWith(table);}placeCaret(td2);}
