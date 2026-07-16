@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:notes": "node scripts/sync-sticky-notes.mjs",
+    "test:notes": "node scripts/sync-sticky-notes.mjs --verify"
   },
   "dependencies": {
     "@tonejs/midi": "^2.0.28",
